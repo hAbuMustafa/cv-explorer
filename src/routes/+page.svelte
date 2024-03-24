@@ -1,9 +1,44 @@
 <script lang="ts">
   import PDFViewer from '$lib/components/PDFViewer.svelte';
-  
+  import RightArrow from 'svelte-material-icons/ArrowRightCircleOutline.svelte'
+  import LeftArrow from 'svelte-material-icons/ArrowLeftCircleOutline.svelte'
+
   export let data;
+  let cvIndex = 0;
 </script>
 
 <h1>CV Explorer</h1>
 
-<PDFViewer file={data.CVs[0]} />
+<ul>
+  <li>
+    <button type="button" on:click={() => cvIndex=cvIndex - 1}>
+    <LeftArrow size="2rem"/>
+  </button>
+</li>
+  <li>
+    <button type="button" on:click={() => cvIndex=cvIndex + 1}>
+      <RightArrow size="2rem"/>
+    </button>
+  </li>
+</ul>
+
+{#key cvIndex}
+  <PDFViewer file={data.CVs[cvIndex]} />
+{/key}
+
+<style>
+  ul {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  li button {
+    background: none;
+    border: none;
+    
+  }
+</style>
