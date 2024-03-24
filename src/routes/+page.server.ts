@@ -1,5 +1,3 @@
-import { json } from '@sveltejs/kit';
-
 async function getCVs() {
   let CVs = [];
 
@@ -10,7 +8,7 @@ async function getCVs() {
     const fileName = path.split('/').at(-1)?.replace(/.pdf$/, '');
 
     if (file && fileName && typeof file === 'object') {
-      const CV = {  fileName, path };
+      const CV = { fileName, path };
       CVs.push(CV);
     }
   }
@@ -22,8 +20,6 @@ async function getCVs() {
 
 export async function load() {
   const CVs = await getCVs();
-
-  console.log(CVs);
 
   return {
     CVs,
