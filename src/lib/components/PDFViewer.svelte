@@ -12,15 +12,26 @@
   export let tags: string[] = [];
 </script>
 
-<h1>{file}</h1>
-
 <ul>
   {#each tags as tag (tag)}
     <li>{tag}</li>
   {/each}
 </ul>
 
-<svelte:component this={Viewer} url={file.path}/>
+<svelte:component
+  this={Viewer}
+  url={file.path}
+  flipTime={0}
+  showButtons={[
+    'navigation',
+    'zoom',
+    'print',
+    'download',
+    'autoflip',
+    'timeInfo',
+    'pageInfo',
+  ]}
+/>
 
 <style>
   li {
