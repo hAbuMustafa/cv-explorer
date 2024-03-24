@@ -1,5 +1,12 @@
 <script lang="ts">
-  import Viewer from 'svelte-pdf';
+  import { onMount } from 'svelte';
+
+  let Viewer: any;
+
+  onMount(async () => {
+    const viewer = await import('svelte-pdf');
+    Viewer = viewer.default;
+  });
 
   export let file: any;
   export let tags: string[] = [];
@@ -13,7 +20,10 @@
   {/each}
 </ul>
 
-<Viewer url={file.path} data={''} />
+<svelte:component this={Viewer} url={file.path}/>
 
 <style>
+  li {
+    list-style: none;
+  }
 </style>
