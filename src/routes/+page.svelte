@@ -36,6 +36,7 @@
   ul {
     display: flex;
     justify-content: space-around;
+    padding: 0;
   }
 
   li {
@@ -45,5 +46,15 @@
   li button {
     background: none;
     border: none;
+  }
+
+  li button :global(svg) {
+    transition: all 0.2s ease-in-out;
+    filter: drop-shadow(1px 1px 0.5rem teal);
+  }
+
+  li button :global(svg:hover) {
+    filter: drop-shadow(1px 1px 0.5rem #ccc);
+    scale: 1.2;
   }
 </style>
