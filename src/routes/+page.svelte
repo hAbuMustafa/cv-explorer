@@ -17,12 +17,12 @@
 
 <ul>
   <li>
-    <button type="button" on:click={() => nextCV(-1)}>
+    <button type="button" title="Previous CV" on:click={() => nextCV(-1)}>
       <LeftArrow size="2rem" />
     </button>
   </li>
   <li>
-    <button type="button" on:click={() => nextCV()}>
+    <button type="button" title="Next CV" on:click={() => nextCV()}>
       <RightArrow size="2rem" />
     </button>
   </li>
