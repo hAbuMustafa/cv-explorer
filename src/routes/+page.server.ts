@@ -14,7 +14,7 @@ async function getCVs() {
 
   for (const path in paths) {
     const file = paths[path];
-    const fileName = path.split('/').at(-1)?.replace(/.pdf$/, '');
+    const fileName = path.split('/').at(-1)?.replace(/\..+$/, '');
     const fileExtension = path
       .split('/')
       .at(-1)
