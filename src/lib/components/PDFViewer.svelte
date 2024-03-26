@@ -17,24 +17,11 @@
     <embed src={file.path} width="80%" height="800px" type="application/pdf" />
   {:else}
     <iframe
-      title={`CV ${file.fileName}`}
-      src="https://view.officeapps.live.com/op/embed.aspx?src={$page.url.href +
-        file.path.replace('/src', 'src')}"
+      srcdoc={file.content}
+      title={file.fileName}
       width="80%"
       height="800px"
-      frameborder="1"
-      >This is an embedded <a target="_blank" href="http://office.com">Microsoft Office</a
-      >
-      document, powered by
-      <a target="_blank" href="http://office.com/webapps">Office Online</a>.</iframe
-    >
-    <!-- <iframe
-      title={`CV ${file.fileName}`}
-      src="https://docs.google.com/gview?url={$page.url.href +
-        file.path.replace('/src', 'src')}&embedded=true"
-      style="height:800px; width:100%;"
-      frameborder="0"
-    /> -->
+    />
   {/if}
 </div>
 
@@ -45,5 +32,9 @@
 
   .cv-wrapper {
     text-align: center;
+  }
+
+  iframe,embed {
+    border: 1px solid black;
   }
 </style>
