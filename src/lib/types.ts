@@ -3,4 +3,5 @@ export type CvT = {
   fileExtension: string;
   mimeType: string;
   path: string;
+  content?: string;
 };
