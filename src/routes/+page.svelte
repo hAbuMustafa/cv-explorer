@@ -18,12 +18,14 @@
 <ul>
   <li>
     <button type="button" title="Previous CV" on:click={() => nextCV(-1)}>
-      <LeftArrow size="2rem" />
+      <LeftArrow size="1.5rem" />
+      <span>Prev. CV</span>
     </button>
   </li>
   <li>
     <button type="button" title="Next CV" on:click={() => nextCV()}>
-      <RightArrow size="2rem" />
+      <RightArrow size="1.5rem" />
+      <span>Next CV</span>
     </button>
   </li>
 </ul>
@@ -46,15 +48,22 @@
   li button {
     background: none;
     border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: teal;
+    font-weight: 750;
+    text-shadow: 0 0 0.25rem gray;
+    cursor: pointer;
   }
 
   li button :global(svg) {
     transition: all 0.2s ease-in-out;
-    filter: drop-shadow(1px 1px 0.5rem teal);
+    filter: drop-shadow(0 0 0.1rem gray);
   }
 
-  li button :global(svg:hover) {
-    filter: drop-shadow(1px 1px 0.5rem #ccc);
+  li button:hover :global(svg) {
+    filter: drop-shadow(0 0 0.5rem gray);
     scale: 1.2;
   }
 </style>
