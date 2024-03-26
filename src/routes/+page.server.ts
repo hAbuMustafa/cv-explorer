@@ -1,3 +1,5 @@
+import type { CvT } from '$lib/types';
+
 const mimeTypes = {
   docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   doc: 'application/msword',
@@ -30,7 +32,7 @@ async function getCVs() {
 }
 
 export async function load() {
-  const CVs = await getCVs();
+  const CVs = (await getCVs()) as CvT[];
 
   return {
     CVs,
