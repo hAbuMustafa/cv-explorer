@@ -22,6 +22,9 @@
       <span>Prev. CV</span>
     </button>
   </li>
+  <li class="file-info" data-type={data.CVs[cvIndex].fileExtension}>
+    <h3>{data.CVs[cvIndex].fileName}</h3>
+  </li>
   <li>
     <button type="button" title="Next CV" on:click={() => nextCV()}>
       <RightArrow size="1.5rem" />
@@ -38,11 +41,31 @@
   ul {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 0;
   }
 
   li {
     list-style: none;
+  }
+
+  li.file-info {
+    position: relative;
+  }
+
+  li.file-info::after {
+    content: attr(data-type);
+    background-color: lightgray;
+    color: dimgray;
+
+    padding: 0.25em 0.5em;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    position: absolute;
+    left: calc(100% + 0.5rem);
+    top: 30%;
   }
 
   li button {
