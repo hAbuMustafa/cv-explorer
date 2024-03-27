@@ -68,6 +68,16 @@
     top: 30%;
   }
 
+  li.file-info h3 {
+    width: 300px;
+    min-width: 40%;
+    max-width: 100%;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   li button {
     background: none;
     border: none;
