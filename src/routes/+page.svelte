@@ -22,7 +22,20 @@
       <span>Prev. CV</span>
     </button>
   </li>
-  <li class="file-info" data-type={data.CVs[cvIndex].fileExtension}>
+  <li
+    class="file-info"
+    data-type={data.CVs[cvIndex].fileExtension}
+    style:--file-background-color={data.CVs[cvIndex].fileExtension === 'pdf'
+      ? '#ee0000'
+      : data.CVs[cvIndex].fileExtension.includes('doc')
+        ? '#0000ee'
+        : null}
+    style:--file-color={['pdf', 'doc'].some((extension) =>
+      data.CVs[cvIndex].fileExtension.includes(extension)
+    )
+      ? 'white'
+      : 'dimgray'}
+  >
     <h3 class:rtl={/[،-٩]+/.test(data.CVs[cvIndex].fileName)}>
       {data.CVs[cvIndex].fileName}
     </h3>
@@ -57,8 +70,8 @@
 
   li.file-info::after {
     content: attr(data-type);
-    background-color: lightgray;
-    color: dimgray;
+    background-color: var(--file-background-color, lightgray);
+    color: var(--file-color, dimgray);
 
     padding: 0.25em 0.5em;
     border-radius: 0.25rem;
