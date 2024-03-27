@@ -17,7 +17,12 @@
 
 <ul>
   <li>
-    <button type="button" title="Previous CV" on:click={() => nextCV(-1)}>
+    <button
+      type="button"
+      title="Previous CV"
+      on:click={() => nextCV(-1)}
+      disabled={cvIndex === 0}
+    >
       <LeftArrow size="1.5rem" />
       <span>Prev. CV</span>
     </button>
@@ -41,7 +46,12 @@
     </h3>
   </li>
   <li>
-    <button type="button" title="Next CV" on:click={() => nextCV()}>
+    <button
+      type="button"
+      title="Next CV"
+      on:click={() => nextCV()}
+      disabled={cvIndex === data.CVs.length - 1}
+    >
       <RightArrow size="1.5rem" />
       <span>Next CV</span>
     </button>
@@ -111,7 +121,7 @@
     filter: drop-shadow(0 0 0.1rem gray);
   }
 
-  li button:hover :global(svg) {
+  li button:not(:disabled):hover :global(svg) {
     filter: drop-shadow(0 0 0.5rem gray);
     scale: 1.2;
   }
@@ -119,5 +129,11 @@
   li button:hover {
     background-color: hsla(180, 100%, 25%, 30%);
     border-radius: 0.25rem;
+  }
+
+  li button:disabled {
+    color: gray;
+    text-shadow: none;
+    cursor: default;
   }
 </style>
