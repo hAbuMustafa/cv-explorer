@@ -23,7 +23,9 @@
     </button>
   </li>
   <li class="file-info" data-type={data.CVs[cvIndex].fileExtension}>
-    <h3>{data.CVs[cvIndex].fileName}</h3>
+    <h3 class:rtl={/[،-٩]+/.test(data.CVs[cvIndex].fileName)}>
+      {data.CVs[cvIndex].fileName}
+    </h3>
   </li>
   <li>
     <button type="button" title="Next CV" on:click={() => nextCV()}>
