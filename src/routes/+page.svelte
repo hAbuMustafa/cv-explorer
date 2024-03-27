@@ -72,6 +72,7 @@
     background: none;
     border: none;
     display: flex;
+    padding: 0.5rem;
     flex-direction: column;
     align-items: center;
     color: teal;
@@ -88,5 +89,10 @@
   li button:hover :global(svg) {
     filter: drop-shadow(0 0 0.5rem gray);
     scale: 1.2;
+  }
+
+  li button:hover {
+    background-color: hsla(180, 100%, 25%, 30%);
+    border-radius: 0.25rem;
   }
 </style>
