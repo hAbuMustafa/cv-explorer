@@ -45,6 +45,12 @@
     </h3>
   </li>
   <li>
+    <label>
+      <input type="number" name="cv-index" bind:value={cvIndex} min={0} max={cvCount} />
+      /{cvCount}
+    </label>
+  </li>
+  <li>
     <button
       type="button"
       title="Next CV"
@@ -131,5 +137,10 @@
     text-shadow: none;
     cursor: default;
     opacity: 0.5;
+  }
+
+  [name='cv-index'] {
+    width: 4ch;
+    text-align: end;
   }
 </style>
