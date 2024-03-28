@@ -26,20 +26,7 @@
       <span>Prev. CV</span>
     </button>
   </li>
-  <li
-    class="file-info"
-    data-type={file.fileExtension}
-    style:--file-background-color={file.fileExtension === 'pdf'
-      ? '#ee0000'
-      : file.fileExtension.includes('doc')
-        ? '#0000ee'
-        : null}
-    style:--file-color={['pdf', 'doc'].some((extension) =>
-      file.fileExtension.includes(extension)
-    )
-      ? 'white'
-      : 'dimgray'}
-  >
+  <li class="file-info">
     <h3 class:rtl={/[،-٩]+/.test(file.fileName)}>
       {file.fileName}
     </h3>
@@ -77,21 +64,6 @@
 
   li.file-info {
     position: relative;
-  }
-
-  li.file-info::after {
-    content: attr(data-type);
-    background-color: var(--file-background-color, lightgray);
-    color: var(--file-color, dimgray);
-
-    padding: 0.25em 0.5em;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-
-    position: absolute;
-    left: calc(100% + 0.5rem);
-    top: 30%;
   }
 
   li.file-info h3 {
