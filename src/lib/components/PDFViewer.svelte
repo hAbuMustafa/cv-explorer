@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import type { CvT } from '$lib/types';
 
   export let file: CvT;
