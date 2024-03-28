@@ -135,5 +135,6 @@
     color: gray;
     text-shadow: none;
     cursor: default;
+    opacity: 0.5;
   }
 </style>
