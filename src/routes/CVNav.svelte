@@ -1,9 +1,7 @@
 <script lang="ts">
-  import type { CvT } from '$lib/types';
   import RightArrow from 'svelte-material-icons/ArrowRightCircleOutline.svelte';
   import LeftArrow from 'svelte-material-icons/ArrowLeftCircleOutline.svelte';
 
-  export let file: CvT;
   export let cvIndex = 0;
   export let cvCount: number;
 
@@ -26,17 +24,7 @@
       <span>Prev. CV</span>
     </button>
   </li>
-  <li class="file-info">
-    <h3 class:rtl={/[،-٩]+/.test(file.fileName)}>
-      {file.fileName}
-    </h3>
-  </li>
-  <li>
-    <label>
-      <input type="number" name="cv-index" bind:value={cvIndex} min={0} max={cvCount} />
-      /{cvCount}
-    </label>
-  </li>
+
   <li>
     <button
       type="button"
@@ -52,28 +40,16 @@
 
 <style>
   ul {
+    background-color: rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 0;
+    padding: 0.5rem 10%;
+    margin-block-end: 0;
   }
 
   li {
     list-style: none;
-  }
-
-  li.file-info {
-    position: relative;
-  }
-
-  li.file-info h3 {
-    width: 300px;
-    min-width: 40%;
-    max-width: 100%;
-    text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 
   li button {
@@ -109,10 +85,5 @@
     text-shadow: none;
     cursor: default;
     opacity: 0.5;
-  }
-
-  [name='cv-index'] {
-    width: 4ch;
-    text-align: end;
   }
 </style>
