@@ -9,7 +9,7 @@
     if (e.key !== 'Enter') return;
 
     const target = e.currentTarget as HTMLInputElement;
-    const nextValue = parseInt(target.value);
+    const nextValue = target.value as unknown as number;
 
     if (nextValue > data.CVs.length || nextValue < 1) return;
     cvIndex = nextValue - 1;
