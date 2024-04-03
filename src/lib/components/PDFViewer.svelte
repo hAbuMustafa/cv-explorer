@@ -1,8 +1,14 @@
 <script lang="ts">
-  import type { CvT } from '$lib/types';
-
-  export let file: CvT;
+  export let file: File;
   export let tags: string[] = [];
+
+  let reader = new FileReader();
+  reader.onload = function (e: ProgressEvent<FileReader>) {
+    let pdfData = e.target!.result;
+    let objectElem = document.createElement('object');
+    objectElem.data = pdfData;
+    document.body.appendChild(objectElem);
+  };
 </script>
 
 <ul>
@@ -12,10 +18,17 @@
 </ul>
 
 <div class="cv-wrapper">
-  {#if file.fileExtension === 'pdf'}
-    <embed src={file.path} width="80%" height="800px" type="application/pdf" />
+  {#if file.type.includes('pdf')}
+    <!-- <embed src={file.webkitRelativePath} width="80%" height="800px" type={file.type} /> -->
+    <object
+      data={reader.readAsDataURL(file)}
+      type={file.type}
+      aria-label={file.name}
+      width="80%"
+      height="800px"
+    />
   {:else}
-    <iframe srcdoc={file.content} title={file.fileName} width="80%" height="800px" />
+    <iframe srcdoc={file.stream()} title={file.name} width="80%" height="800px" />
   {/if}
 </div>
 

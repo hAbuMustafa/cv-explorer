@@ -1,8 +1,9 @@
 <script lang="ts">
+  import FolderPicker from '$lib/components/FolderPicker.svelte';
   import PDFViewer from '$lib/components/PDFViewer.svelte';
   import CvNav from './CVNav.svelte';
 
-  export let data;
+  let CVs: FileList;
   let cvIndex = 0;
 
   function handleKeyDown(e: KeyboardEvent) {
@@ -11,55 +12,58 @@
     const target = e.currentTarget as HTMLInputElement;
     const nextValue = target.value as unknown as number;
 
-    if (nextValue > data.CVs.length || nextValue < 1) return;
+    if (nextValue > CVs.length || nextValue < 1) return;
     cvIndex = nextValue - 1;
   }
 </script>
 
 <h1>CV Explorer</h1>
+{#if !CVs}
+  <FolderPicker bind:CVs />
+{:else}
+  <CvNav bind:cvIndex cvCount={CVs.length - 1} />
 
-<CvNav bind:cvIndex cvCount={data.CVs.length - 1} />
+  <div class="cv-info">
+    {#key cvIndex}
+      <label>
+        <input
+          type="number"
+          name="cv-index"
+          value={cvIndex + 1}
+          min={1}
+          max={CVs.length}
+          on:keydown={handleKeyDown}
+        />
+        /{CVs.length}
+      </label>
+    {/key}
 
-<div class="cv-info">
+    <span class="cv-file-name">
+      <span class="cv-name" class:rtl={/[،-٩]+/.test(CVs[cvIndex].name)}>
+        {CVs[cvIndex].name}
+      </span>
+      <span
+        class="cv-type"
+        style:--file-background-color={CVs[cvIndex].type.includes('pdf')
+          ? '#ee0000'
+          : CVs[cvIndex].type.includes('doc')
+            ? '#0000ee'
+            : null}
+        style:--file-color={['pdf', 'doc'].some((extension) =>
+          CVs[cvIndex].type.includes(extension)
+        )
+          ? 'white'
+          : 'dimgray'}
+      >
+        {CVs[cvIndex].type}
+      </span>
+    </span>
+  </div>
+
   {#key cvIndex}
-    <label>
-      <input
-        type="number"
-        name="cv-index"
-        value={cvIndex + 1}
-        min={1}
-        max={data.CVs.length}
-        on:keydown={handleKeyDown}
-      />
-      /{data.CVs.length}
-    </label>
+    <PDFViewer file={CVs[cvIndex]} />
   {/key}
-
-  <span class="cv-file-name">
-    <span class="cv-name" class:rtl={/[،-٩]+/.test(data.CVs[cvIndex].fileName)}>
-      {data.CVs[cvIndex].fileName}
-    </span>
-    <span
-      class="cv-type"
-      style:--file-background-color={data.CVs[cvIndex].fileExtension === 'pdf'
-        ? '#ee0000'
-        : data.CVs[cvIndex].fileExtension.includes('doc')
-          ? '#0000ee'
-          : null}
-      style:--file-color={['pdf', 'doc'].some((extension) =>
-        data.CVs[cvIndex].fileExtension.includes(extension)
-      )
-        ? 'white'
-        : 'dimgray'}
-    >
-      {data.CVs[cvIndex].fileExtension}
-    </span>
-  </span>
-</div>
-
-{#key cvIndex}
-  <PDFViewer file={data.CVs[cvIndex]} />
-{/key}
+{/if}
 
 <style>
   .cv-info {
