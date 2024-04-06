@@ -16,6 +16,14 @@
       reader.readAsArrayBuffer(file);
     });
   }
+
+  async function convertDocxToHtml(docxFile: File): Promise<string> {
+    return await mammoth
+      .convertToHtml({
+        arrayBuffer: await fileToArrayBuffer(docxFile),
+      })
+      .then((result) => result.value);
+  }
 </script>
 
 <div class="cv-wrapper">
@@ -27,14 +35,11 @@
       height="800px"
     />
   {:else}
-    <iframe
-      srcdoc={await mammoth.convertToHtml({
-        arrayBuffer: await fileToArrayBuffer(file),
-      })}
-      title={file.name}
-      width="80%"
-      height="800px"
-    />
+    {#await convertDocxToHtml(file)}
+      <p>Loading..</p>
+    {:then html}
+      <iframe srcdoc={html} title={file.name} width="80%" height="800px" />
+    {/await}
   {/if}
 </div>
 
