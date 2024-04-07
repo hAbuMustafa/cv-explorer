@@ -25,7 +25,7 @@
 
   <div class="cv-info">
     {#key cvIndex}
-      <label>
+      <label class="cv-indices">
         <input
           type="number"
           name="cv-index"
@@ -73,6 +73,11 @@
     padding: 0.5rem 10%;
 
     background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .cv-indices {
+    white-space: nowrap;
+    margin-inline-end: 0.5rem;
   }
 
   .cv-file-name {
