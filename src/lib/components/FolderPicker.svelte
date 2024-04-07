@@ -1,5 +1,6 @@
 <script lang="ts">
   export let CVs: FileList;
+  let fileInput: HTMLInputElement;
 
   function handleFileChange(e: Event) {
     const files = (e.target as HTMLInputElement).files;
@@ -20,9 +21,12 @@
     type="file"
     name="folder-picker"
     id="folder-picker"
+    style="display: none;"
     webkitdirectory
     on:change={handleFileChange}
+    bind:this={fileInput}
   />
+  <button type="button" on:click={() => fileInput.click()}>Browse for Folder..</button>
 </div>
 
 <style>
