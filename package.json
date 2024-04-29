@@ -2,6 +2,9 @@
   "name": "cv-explorer",
   "version": "0.0.1",
   "private": false,
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
